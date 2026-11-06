@@ -17,3 +17,23 @@ import com.example.pertemuan8.view.FormSiswa
 import com.example.pertemuan8.view.TampilSiswa
 import com.example.pertemuan8.viewmodel.SiswaViewModel
 // import com.example.pertemuan8.model.JenisK // (Pastikan ini sesuai dengan nama variabel list di DataJK.kt)
+
+enum class Navigasi {
+    Formulir,
+    Detail
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SiswaApp(
+    modifier: Modifier = Modifier,
+    viewModel: SiswaViewModel = viewModel(),
+    navController: NavHostController = rememberNavController()
+){
+    Scaffold { isiRuang->
+        val uiState = viewModel.statusUI.collectAsState()
+        NavHost(
+            navController = navController,
+            startDestination = Navigasi.Formulir.name,
+
+            modifier = Modifier.padding(isiRuang)){
